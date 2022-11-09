@@ -41,17 +41,100 @@
         background-color: #04AA6D;
         color: white;
         }
+
+
+        .update {
+        border: none;
+        color: rgb(33, 74, 236);
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        }
+
+        .delete {
+        border: none;
+        color: rgb(236, 33, 33);
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        }
+
+        .delete a:hover {
+        border: none;
+        color: rgb(236, 33, 33);
+        padding: 10px;
+        text-align: center;
+        border: 1px;
+        border-color: red;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        }
+
+        div {
+            display: flex;
+        }
+
+        .detail {
+        border: none;
+        /* color: rgb(7, 179, 18); */
+        background-color: #78eb86;
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        }
+
+        .create {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        /* width: 400px;
+        height: 200px; */
+        border: none;
+        color: #ddd;
+        /* color: rgb(7, 179, 18); */
+        background-color: #2081e1;
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        margin: 4px 2px;
+        cursor: pointer;
+        }
     </style>
 </head>
+   
 <body>
 
     <div class="topnav">
-        <a class="active" href="http://127.0.0.1:8000/">Home</a>
-        <a href="http://127.0.0.1:8000/admin/">Admin</a>
-        <a href="http://127.0.0.1:8000/list/">Posts</a>
+        <a class="active" href="{% url 'home' %}">Home</a>
+        <a href="{% url 'post-list' %}">Posts</a>
+
     </div>
 
-    <h1>Index</h1>
+    {% block content %}
+    
+    {% endblock %}
 
 </body>
 </html>

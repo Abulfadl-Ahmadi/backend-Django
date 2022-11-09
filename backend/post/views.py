@@ -27,12 +27,22 @@ class PostCreate(CreateView):
     model = Post
     fields = ['title', 'content', 'image', 'slug', 'user']
     template_name = "post/create.html"
+    success_url = reverse_lazy("post-list")
+
+
+class PostUpdate(UpdateView):
+    model = Post
+    fields = ['title', 'content', 'image', 'slug', 'user']
+    template_name = "post/update.html"
+    success_url = reverse_lazy("post-detail")
+    pk_url_kwarg = "pk"
 
 
 class PostDelete(DeleteView):
     model = Post
-    template_name = 'post/delete.html'
-    # success_url = reverse_lazy("")
+    template_name_suffix = "_confirm_delete"
+    success_url = reverse_lazy("post-list")
+    pk_url_kwarg = "pk"
 
 
 # class PostListCreateAPIView(ListCreateAPIView):

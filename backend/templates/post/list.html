@@ -1,3 +1,4 @@
+{% extends "index.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,23 +43,29 @@
         background-color: #04AA6D;
         color: white;
         }
+
+        
+
     </style>
 </head>
 <body>
 
-    <div class="topnav">
-        <a class="active" href="http://127.0.0.1:8000/">Home</a>
-        <a href="http://127.0.0.1:8000/admin/">Admin</a>
-        <a href="http://127.0.0.1:8000/list/">Posts</a>
-    </div>
-
+{% block content %}
+    <div>
     <h1>List of posts</h1>
+    <a href="{% url 'post-create' %}">
+        <button class="create">Create</button>
+    </a>
+    </div>
     <p>
         {% for post in posts %}
             <p>title : {{post.title}}</p>
-            <a href='{% url "post-detail" post.pk %}'>Detail</a>
+            <a href='{% url "post-detail" post.pk %}'>
+                <button class="detail">Detail</button>
+            </a>
             <hr>
         {% endfor %}
     </p>
+{% endblock %}
 </body>
 </html>

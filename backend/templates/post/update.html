@@ -1,18 +1,19 @@
+{% extends "index.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create</title>
+    <title>Update</title>
 </head>
 <body>
 {% block content %}
-    Create New Post
+    Update New Post
     <form method="post">{% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Create">
-    </form>
+        <input type="submit" value="Update">
+    </form>    
 {% endblock %}
 </body>
 </html>
