@@ -20,19 +20,20 @@
 </head>
 <body>
 {% block content %}
-    <h2>Details of {{post.title}}</h2>
+<div class="detail">
+    <h2 style="margin-top: 60px;" >{{post.title}}</h2>
     <p>content : {{post.content}}</p>
     <p>time : {{post.update}}</p>
     <p>author : {{post.user}}</p>
+</div>
 
-
-    <div>
+    <div style="display: flex;">
         <a href='{% url "post-update" post.pk %}'>
-            <button class="update">update</button>
+            <button style="margin: 10px;" type="button" class="btn btn-primary">update</button>
         </a>
         
         <a href='{% url "post-delete" post.pk %}'>
-            <button class="delete">delete</button>
+            <button style="margin: 10px;" type="button" class="btn btn-danger">delete</button>
         </a>
     </div>
 {% endblock %}

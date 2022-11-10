@@ -1,3 +1,4 @@
+{% extends "index.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 <body>
 {% block content %}
     Create New Post
-    <form method="post">{% csrf_token %}
+    <form method="post" class="form-group">{% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Create">
     </form>
