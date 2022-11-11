@@ -4,6 +4,7 @@ from django.views.generic import ListView, CreateView, DeleteView, DetailView, U
 from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Post
 from .serializers import ProductSerializer
+from .forms import PostForm
 
 
 def Home(request):
@@ -25,7 +26,8 @@ class PostDetail(DetailView):
 
 class PostCreate(CreateView):
     model = Post
-    fields = ['title', 'content', 'image', 'slug', 'user']
+    form_class = PostForm
+    # fields = ['title', 'content', 'image', 'slug', 'user']
     template_name = "post/create.html"
     success_url = reverse_lazy("post-list")
 
@@ -34,7 +36,7 @@ class PostUpdate(UpdateView):
     model = Post
     fields = ['title', 'content', 'image', 'slug', 'user']
     template_name = "post/update.html"
-    success_url = reverse_lazy("post-detail")
+    success_url = reverse_lazy("post-list")
     pk_url_kwarg = "pk"
 
 

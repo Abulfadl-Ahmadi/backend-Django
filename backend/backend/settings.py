@@ -54,9 +54,17 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
+    'crispy_forms',
+    'image_uploader_widget',
+    "crispy_bootstrap5",
+
     'post',
     'user',
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

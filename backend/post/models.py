@@ -13,3 +13,10 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return f'{self.user.user}:{self.title}'
+
+    @property
+    def image_url(self):
+
+        if self.image:
+            return self.image.url
+        return ''

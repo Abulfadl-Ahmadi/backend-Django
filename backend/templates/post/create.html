@@ -1,19 +1,15 @@
-{% extends "index.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}Create New Post{% endblock %}
+
 {% block content %}
-    Create New Post
+<div class="from-group" style="margin: 100px;">
     <form method="post" class="form-group">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Create">
+            
+                {{ form|crispy }}
+
+        <input type="submit" class="btn btn-secondary" value="Create">
     </form>
+</div>
 {% endblock %}
-</body>
-</html>
