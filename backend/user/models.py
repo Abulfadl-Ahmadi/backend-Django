@@ -31,8 +31,8 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
-    image = models.ImageField(default='default.jpg',
-                              upload_to='profile_pics', null=True, blank=True)
+    image = models.ImageField(
+        upload_to='profile_pics', null=True, blank=True)
     birthdate = models.DateField(blank=True, null=True)
     update = models.DateTimeField(auto_now=True)
 
