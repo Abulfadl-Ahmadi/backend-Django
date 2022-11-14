@@ -9,7 +9,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
     content = models.TextField()
-    image = models.ImageField(blank=True, null=True, upload_to="photos")
+    image = models.FileField(blank=True, null=True, upload_to="photos")
     update = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -28,7 +28,8 @@ class Post(models.Model):
 
     @property
     def image_url(self):
-
-        if self.image:
+        if self.image and hasattr(self.image, 'url'):
             return self.image.url
-        return ''
+
+    class Meta:
+        ordering = ['created_at']

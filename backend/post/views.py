@@ -34,7 +34,7 @@ class PostCreate(CreateView):
 
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['title', 'content', 'image', 'slug', 'user']
+    form_class = PostForm
     template_name = "post/update.html"
     success_url = reverse_lazy("post-list")
     pk_url_kwarg = "pk"

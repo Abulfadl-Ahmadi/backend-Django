@@ -27,7 +27,7 @@
     <div class="flex-container ">
         {% for post in posts %}
             <div class="card detail flex-container shadow mb-5 bg-body rounded" style="width: 18rem;">
-                <img src="{{ post.image_url }}" class="card-img-top" alt="...">
+                <img src="{{ post.image_url|default_if_none:'#' }}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{post.title}}</h5>
                   <p class="card-text">{{ post.content|truncatechars:99 }}</p>
