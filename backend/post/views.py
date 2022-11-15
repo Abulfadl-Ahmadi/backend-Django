@@ -3,7 +3,6 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
 from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Post
-from .serializers import ProductSerializer
 from .forms import PostForm
 
 

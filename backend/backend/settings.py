@@ -60,7 +60,10 @@ INSTALLED_APPS = [
 
     'post',
     'user',
+    'API',
 ]
+
+AUTH_USER_MODEL = 'user.CustomUser'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -103,9 +106,8 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        **postgresql["Farsi"]
-    }
+    'default': postgresql['Abulfadl'],
+
 }
 
 # Password validation

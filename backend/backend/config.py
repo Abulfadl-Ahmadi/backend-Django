@@ -2,7 +2,7 @@
 postgresql = {
     'Abulfadl': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'NewDB',
+        'NAME': 'NewDB1',
         'USER': 'postgres',
         'PASSWORD': 'Abul1385',
         'HOST': '127.0.0.1',

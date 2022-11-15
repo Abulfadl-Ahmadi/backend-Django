@@ -1,7 +1,10 @@
 from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
+from .models import *
 
 
 class CreateUser(CreateView):
+    # model = Profile
+    # fields =
     pass
 
 
@@ -13,7 +16,7 @@ class DeleteUser(DeleteView):
     pass
 
 
-class DeleteUser(DetailView):
+class DetailUser(DetailView):
     pass
 
 

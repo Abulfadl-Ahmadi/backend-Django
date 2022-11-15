@@ -1,11 +1,11 @@
 from django.db import models
-from user.models import Profile
+from user.models import *
 from PIL import Image
 
 
 class Post(models.Model):
     user = models.ForeignKey(
-        Profile, on_delete=models.CASCADE)
+        CustomUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
     content = models.TextField()
@@ -14,7 +14,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return f'{self.user.user}:{self.title}'
+        return f'{str(self.user)}:{self.title}'
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
