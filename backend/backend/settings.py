@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 import environ
 from pathlib import Path
-
+from .config import postgresql
 
 env = environ.Env(
     # set casting, default value
@@ -104,12 +104,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'NewDB',
-        'USER': 'postgres',
-        'PASSWORD': 'Abul1385',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        **postgresql["Farsi"]
     }
 }
 
