@@ -1,6 +1,7 @@
 from django.db import models
 from user.models import *
 from PIL import Image
+from utils.utils import StatusOfPost
 
 
 class Post(models.Model):
@@ -12,6 +13,8 @@ class Post(models.Model):
     image = models.FileField(blank=True, null=True, upload_to="photos")
     update = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=1, choices=StatusOfPost.choices, default=StatusOfPost.PUBLISH)
 
     def __str__(self) -> str:
         return f'{str(self.user)}:{self.title}'

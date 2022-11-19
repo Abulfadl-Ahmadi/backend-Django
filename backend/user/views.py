@@ -17,8 +17,13 @@ class DeleteUser(DeleteView):
 
 
 class DetailUser(DetailView):
-    pass
+    queryset = CustomUser.objects.all()
+    template_name = 'user/detail.html'
+    context_object_name = "user"
+    pk_url_kwarg = 'pk'
 
 
 class ListUser(ListView):
-    pass
+    queryset = CustomUser.objects.all()
+    template_name = 'user/list.html'
+    context_object_name = "users"

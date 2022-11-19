@@ -6,7 +6,7 @@ from image_uploader_widget.widgets import ImageUploaderWidget
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'content', 'image', 'user', 'slug')
+        fields = ('title', 'content', 'image', 'user', 'slug', 'status')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title'}),

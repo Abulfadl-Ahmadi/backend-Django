@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
-from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+# from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Post
 from .forms import PostForm
+from utils.utils import StatusOfPost
 
 
 def Home(request):
@@ -11,7 +12,7 @@ def Home(request):
 
 
 class PostList(ListView):
-    queryset = Post.objects.all()
+    queryset = Post.objects.filter(status="P")
     template_name = "post/list.html"
     context_object_name = "posts"
 
