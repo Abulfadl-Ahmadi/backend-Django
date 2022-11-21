@@ -4,7 +4,6 @@ from django.views.generic import ListView, CreateView, DeleteView, DetailView, U
 # from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Post
 from .forms import PostForm
-from utils.utils import StatusOfPost
 
 
 def Home(request):

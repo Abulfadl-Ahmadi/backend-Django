@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}Create New User{% endblock %}
+
+{% block content %}
+<div class="from-group" style="margin: 100px;">
+    <h1>Create User Page</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button class="btn btn-secondary" type="submit">Create</button>
+    </form>
+
+{% endblock %}

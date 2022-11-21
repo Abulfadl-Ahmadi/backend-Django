@@ -44,6 +44,14 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(username, email, password, **extra_fields)
 
 
+# class Follow(models.Model):
+#     follower = models.ForeignKey(
+#         "CustomUser", on_delete=models.CASCADE, related_name="follower")
+#     following = models.ForeignKey(
+#         "CustomUser", on_delete=models.CASCADE, related_name="following")
+#     created = models.DateTimeField(auto_now_add=True)
+
+
 class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=150, blank=True, null=True)
     last_name = models.CharField(max_length=150, blank=True,  null=True)
@@ -81,8 +89,12 @@ class CustomUser(AbstractUser):
             return self.image.url
 
     # @property
-    # def age(self):
-    #     today = date.today()
-    #     age = today.year - self.birthdate.year - \
-    #         ((today.month, today.day) < (self.birthdate.month, self.birthdate.day))
-    #     return age
+    # def get_followers(self):
+    #     '''
+    #     set a query to search followings of self.user
+    #     '''
+    #     followers = Follow.objects.filter(follower=self.user)
+
+    # @property
+    # def get_following(self):
+    #     followings = Follow.objects.filter(following=self.user)

@@ -2,9 +2,21 @@
 
 {% block content %}
 
-<div>
-    <h1>{{user.username}}</h1>
+
+<div class="post">
+    <div class="detail">
+        <img src="{{ user.image_url|default_if_none:'#' }}" alt="">
+        <h2 style="margin-top: 60px;">{{user.fullname}}</h2>
+        <p class="fs-5 text-justify">Bio : {{user.bio}}</p>
+    </div>
+    <div style="display: flex;">
+        <a href='{% url "user-update" user.pk %}'>
+            <button style="margin: 10px;" type="button" class="btn btn-primary">update</button>
+        </a>
+       <a href='{% url "user-delete" user.pk %}'>
+            <button style="margin: 10px;" type="button" class="btn btn-danger">delete</button>
+        </a>
+    </div>
+
 </div>
-
-
 {% endblock %}

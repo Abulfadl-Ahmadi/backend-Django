@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
-{% block title %}Update Post{% endblock %}
+{% block title %}Update Profile{% endblock %}
 
 {% block content %}
-<h1>Update Post Page</h1>
+<h1>Update Profile</h1>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form|crispy }}
-  <button class="btn btn-secondary"  type="submit">Submit Update</button>
+  <button class="btn btn-secondary"  type="submit">Update</button>
 </form>
 {% endblock %}
