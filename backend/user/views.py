@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm  # add this
 from django.contrib.auth import login, authenticate  # add this
 from django.shortcuts import render, redirect
@@ -67,10 +69,17 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect("/")
+                return redirect('/')
             else:
                 messages.error(request, "Invalid username or password.")
         else:
             messages.error(request, "Invalid username or password.")
     form = AuthenticationForm()
     return render(request=request, template_name="user/login.html", context={"login_form": form})
+
+
+@login_required
+def logout_request(request):
+    logout(request)
+    messages.info(request, "Logged out successfully!")
+    return redirect("/")

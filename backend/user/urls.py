@@ -9,6 +9,7 @@ urlpatterns = [
     path('user/<int:pk>/update/', UpdateUser.as_view(), name='user-update'),
     path('user/<int:pk>/delete/', DeleteUser.as_view(), name='user-delete'),
     path("user/login", login_request, name="user-login"),
+    path('logout', logout_request, name="user-logout")
 
 
 
