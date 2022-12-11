@@ -14,6 +14,7 @@ class PostList(ListView):
     queryset = Post.objects.filter(status="P")
     template_name = "post/list.html"
     context_object_name = "posts"
+    paginate_by = 12
 
 
 class PostDetail(DetailView):

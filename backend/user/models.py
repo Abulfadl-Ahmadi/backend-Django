@@ -1,13 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User, AbstractUser
-from datetime import date
+from django.contrib.auth.models import AbstractUser
 from PIL import Image
-# from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.base_user import BaseUserManager
 
 
 __all__ = (
     'CustomUser',
+    'FollowersCount',
 )
 
 
@@ -42,14 +41,6 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
         return self.create_user(username, email, password, **extra_fields)
-
-
-# class Follow(models.Model):
-#     follower = models.ForeignKey(
-#         "CustomUser", on_delete=models.CASCADE, related_name="follower")
-#     following = models.ForeignKey(
-#         "CustomUser", on_delete=models.CASCADE, related_name="following")
-#     created = models.DateTimeField(auto_now_add=True)
 
 
 class CustomUser(AbstractUser):
@@ -88,13 +79,11 @@ class CustomUser(AbstractUser):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
 
-    # @property
-    # def get_followers(self):
-    #     '''
-    #     set a query to search followings of self.user
-    #     '''
-    #     followers = Follow.objects.filter(follower=self.user)
 
-    # @property
-    # def get_following(self):
-    #     followings = Follow.objects.filter(following=self.user)
+class FollowersCount(models.Model):
+    follower = models.ManyToManyField(CustomUser, related_name="follower")
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user
+    

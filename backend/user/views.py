@@ -8,6 +8,48 @@ from django.views.generic import ListView, CreateView, DeleteView, DetailView, U
 from django.urls import reverse_lazy
 from .models import *
 from .forms import *
+from django.contrib.auth.models import auth
+
+
+def index(request):
+    current_user = request.GET.get('user')
+    logged_in_user = request.user.username
+    user_followers = len(FollowersCount.objects.filter(user=current_user))
+    user_following = len(FollowersCount.objects.filter(follower=current_user))
+    user_followers0 = FollowersCount.objects.filter(user=current_user)
+    user_followers1 = []
+    for i in user_followers0:
+        user_followers0 = i.follower
+        user_followers1.append(user_followers0)
+
+    if logged_in_user in user_followers1:
+        follow_button_value = 'unfollow'
+    else:
+        follow_button_value = 'follow'
+
+    return render(request, 'user/detail.html', {
+        'current_user': current_user,
+        'user_followers': user_followers,
+        'user_following': user_following,
+        'follow_button_value': follow_button_value
+    })
+
+
+def followers_count(request):
+    if request.method == 'POST':
+        value = request.POST['value']
+        user = request.POST['user']
+        follower = request.POST['follower']
+        if value == 'follow':
+            followers_cnt = FollowersCount.objects.create(
+                follower=follower, user=user)
+            followers_cnt.save()
+        else:
+            followers_cnt = FollowersCount.objects.get(
+                follower=follower, user=user)
+            followers_cnt.delete()
+
+        return redirect('/?user=' + user)
 
 
 class CreateUser(CreateView):
@@ -37,12 +79,16 @@ class DetailUser(DetailView):
     template_name = 'user/detail.html'
     context_object_name = "user"
     pk_url_kwarg = 'pk'
+    
+
+
 
 
 class ListUser(ListView):
     queryset = CustomUser.objects.all()
     template_name = 'user/list.html'
     context_object_name = "users"
+    paginate_by = 12
 
 
 def register_request(request):
@@ -56,7 +102,7 @@ def register_request(request):
         messages.error(
             request, "Unsuccessful registration. Invalid information.")
     form = CustomUserCreateForm()
-    return render(request=request, template_name="user/create.html", context={"register_form": form})
+    return render(request=request, template_name="user/signup.html", context={"register_form": form})
 
 
 def login_request(request):

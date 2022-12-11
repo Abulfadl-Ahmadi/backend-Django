@@ -19,4 +19,43 @@
     </div>
 
 </div>
+</div>
+
+<div class="profile-user-settings">
+
+    <h1 class="profile-user-name">{{current_user}}</h1>
+
+    <form action="followers_count" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="user" value="{{current_user}}" readonly />
+        <input type="hidden" name="follower" value="{{user.username}}" readonly />
+
+        {% if follow_button_value == 'follow' %}
+        <input type="hidden" name="value" value="follow" readonly />
+        <button type="submit" class="btn profile-edit-btn">
+            Follow
+        </button>
+        {% else %}
+        <input type="hidden" name="value" value="unfollow" readonly />
+        <button type="submit" class="btn profile-edit-btn">
+            Unfollow
+        </button>
+        {% endif %}
+    </form>
+
+
+    <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog"
+            aria-hidden="true"></i></button>
+
+</div>
+
+<div class="profile-stats">
+
+    <ul>
+        <!-- <li><span class="profile-stat-count">x</span> posts</li> -->
+        <li><span class="profile-stat-count">{{user_followers}}</span> followers</li>
+        <li><span class="profile-stat-count">{{user_following}}</span> following</li>
+    </ul>
+
+</div>
 {% endblock %}

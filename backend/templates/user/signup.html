@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Create New User{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container py-5">
+  <h1>Create User</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{ register_form|crispy }}
+    <button class="btn btn-primary" type="submit">Create</button>
+  </form>
+  <p class="text-center">
+    If you already have an account,
+    <a href="{% url 'login' %}">login</a> instead.
+  </p>
+</div>
+{% endblock %}
