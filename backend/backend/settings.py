@@ -24,6 +24,7 @@ env = environ.Env(
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REAL_BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Take environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
@@ -37,9 +38,6 @@ SECRET_KEY = 'django-insecure-vljuhyqne#s^0m9pmmbhjz$k@9^l3hh8%8ir!c#fzay#^fg4#)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets')
-
-
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -51,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     'rest_framework',
 
     'crispy_forms',
@@ -82,6 +80,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'backend.urls'
 TEMPLATE_DIR = os.path.join(
     CORE_DIR, "templates")  # ROOT dir for templates
+
+REACT_DIR = os.path.join(REAL_BASE_DIR, 'frontend', 'build')
 
 
 TEMPLATES = [
@@ -144,6 +144,9 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(CORE_DIR, 'static')
 STATIC_URL = '/static/'
+
+
+STATICFILES_DIRS = [os.path.join(REAL_BASE_DIR, 'frontend', 'build', 'static')]
 
 
 # Default primary key field type

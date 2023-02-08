@@ -78,6 +78,9 @@ class CustomUser(AbstractUser):
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
+        
+        
+    
 
 
 class FollowersCount(models.Model):
@@ -87,3 +90,6 @@ class FollowersCount(models.Model):
     def __str__(self):
         return self.user
     
+
+
+

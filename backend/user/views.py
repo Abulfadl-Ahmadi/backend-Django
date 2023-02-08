@@ -33,25 +33,6 @@ def index(request):
         'user_following': user_following,
         'follow_button_value': follow_button_value
     })
-
-
-def followers_count(request):
-    if request.method == 'POST':
-        value = request.POST['value']
-        user = request.POST['user']
-        follower = request.POST['follower']
-        if value == 'follow':
-            followers_cnt = FollowersCount.objects.create(
-                follower=follower, user=user)
-            followers_cnt.save()
-        else:
-            followers_cnt = FollowersCount.objects.get(
-                follower=follower, user=user)
-            followers_cnt.delete()
-
-        return redirect('/?user=' + user)
-
-
 class CreateUser(CreateView):
     model = CustomUser
     template_name = 'user/create.html'
@@ -129,3 +110,22 @@ def logout_request(request):
     logout(request)
     messages.info(request, "Logged out successfully!")
     return redirect("/")
+
+
+
+# def follow(request):
+#     if request.method == 'POST':
+#         follower = request.POST['follower']
+#         user = request.POST['user']
+
+#         if FollowersCount.objects.filter(follower=follower, user=user).first():
+#             delete_follower = FollowersCount.objects.get(follower=follower, user=user)
+#             delete_follower.delete()
+#             return redirect('/profile/'+user)
+#         else:
+#             new_follower = FollowersCount.objects.create(follower=follower, user=user)
+#             new_follower.save()
+#             return redirect('/profile/'+user)
+#     else:
+#         return redirect('/')
+    

@@ -23,4 +23,25 @@
     </div>
 
 </div>
+<h2> Comments </h2>
+
+{% if user.is_authenticated %}
+<form action="" method="POST" id="main_form" class="comment_form">
+    <div>
+        <label for="comment">Type Comment here</label>
+        {{ comment_form.content }} {% csrf_token %} <input type="submit" value="Post">
+    </div>
+    </div>
+</form>
+{% else %} <h2>You need to Login to comment</h2>
+{% endif %}
+
+{% for comment in comments %}
+{% if comment.is_parent %}
+<h3> <b>{{ comment.author }} : </b> {{ comment.content }}</h3>
+{% endif %}
+{% for replies in comment.children %}
+<h3>&nbsp; &nbsp; &nbsp; <b>{{ comment.author }} : </b> {{ replies.content }}</h3>
+{% endfor %}
+{% endfor %}
 {% endblock %}
